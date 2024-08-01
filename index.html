@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Polling System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Online Polling System</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/add">Add Poll</a>
+        </nav>
+    </header>
+    <main>
+        <section id="polls">
+            <h2>Polls</h2>
+            <div class="poll-list">
+                {% for poll in polls %}
+                <div class="poll">
+                    <h3><a href="{{ url_for('poll', id=poll.id) }}">{{ poll.question }}</a></h3>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Online Polling System</p>
+    </footer>
+</body>
+</html>
