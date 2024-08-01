@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ poll.question }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ poll.question }}</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/add">Add Poll</a>
+        </nav>
+    </header>
+    <main>
+        <section id="poll-detail">
+            <h2>{{ poll.question }}</h2>
+            <form action="{{ url_for('vote', option_id=option.id) }}" method="POST">
+                {% for option in poll.options %}
+                <div class="option">
+                    <label>
+                        <input type="radio" name="option" value="{{ option.id }}"> {{ option.text }}
+                    </label>
+                </div>
+                {% endfor %}
+                <button type="submit">Vote</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Online Polling System</p>
+    </footer>
+</body>
+</html>
